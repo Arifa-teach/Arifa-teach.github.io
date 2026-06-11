@@ -17,9 +17,6 @@
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 2rem;
         }
         
@@ -28,7 +25,8 @@
             padding: 3rem;
             border-radius: 10px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
+            max-width: 700px;
+            margin: 0 auto;
             text-align: center;
         }
         
@@ -57,6 +55,31 @@
             margin-bottom: 2rem;
         }
         
+        .section {
+            display: none;
+            text-align: left;
+            padding: 2rem 0;
+            border-top: 1px solid #eee;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .hero-section {
+            display: block;
+        }
+        
+        .section ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .section li {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+        
         .email-section {
             margin-top: 2rem;
             padding-top: 2rem;
@@ -83,6 +106,13 @@
             text-decoration: underline;
         }
         
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
         .cta-button {
             display: inline-block;
             background-color: #667eea;
@@ -90,12 +120,23 @@
             padding: 12px 30px;
             border-radius: 5px;
             text-decoration: none;
-            margin: 0.5rem;
+            border: none;
+            cursor: pointer;
             transition: background-color 0.3s ease;
+            font-size: 1rem;
         }
         
         .cta-button:hover {
             background-color: #764ba2;
+        }
+        
+        .back-button {
+            background-color: #999;
+            margin-top: 1rem;
+        }
+        
+        .back-button:hover {
+            background-color: #666;
         }
         
         .social-links {
@@ -117,15 +158,52 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome! 👋</h1>
-        <p>Hi, I'm <strong>Arifa</strong>. This is my personal GitHub Pages website.</p>
-        <p>I'm currently building this site. Check back soon for updates!</p>
-        
-        <div>
-            <a href="#about" class="cta-button">Learn More</a>
-            <a href="#projects" class="cta-button">Projects</a>
+        <!-- Hero Section -->
+        <div id="hero" class="section hero-section active">
+            <h1>Welcome! 👋</h1>
+            <p>Hi, I'm <strong>Arifa</strong>. This is my personal GitHub Pages website.</p>
+            <p>I'm currently building this site. Check back soon for updates!</p>
+            
+            <div class="button-group">
+                <button onclick="showSection('about')" class="cta-button">Learn More</button>
+                <button onclick="showSection('projects')" class="cta-button">Projects</button>
+            </div>
         </div>
         
+        <!-- About Section -->
+        <div id="about" class="section">
+            <h2>About Me</h2>
+            <p>Welcome to my personal website! I'm Arifa, a passionate educator and developer.</p>
+            <p>I specialize in:</p>
+            <ul>
+                <li>Online tutoring and education</li>
+                <li>Web development and design</li>
+                <li>Collaboration and mentoring</li>
+                <li>Building innovative solutions</li>
+            </ul>
+            <p>Feel free to reach out for business inquiries, collaborations, or tutoring opportunities!</p>
+            <div class="button-group">
+                <button onclick="showSection('hero')" class="cta-button back-button">← Back</button>
+            </div>
+        </div>
+        
+        <!-- Projects Section -->
+        <div id="projects" class="section">
+            <h2>Projects</h2>
+            <p>Here are some of my recent projects and work:</p>
+            <ul>
+                <li><strong>GitHub Pages Website</strong> - This personal website built with HTML and CSS</li>
+                <li><strong>Online Tutoring Platform</strong> - Educational content and resources</li>
+                <li><strong>Web Development</strong> - Various web projects and applications</li>
+                <li><strong>More coming soon...</strong> - Stay tuned for updates!</li>
+            </ul>
+            <p>Check out my <a href="https://github.com/Arifa-teach" target="_blank" style="color: #667eea;">GitHub profile</a> for more work!</p>
+            <div class="button-group">
+                <button onclick="showSection('hero')" class="cta-button back-button">← Back</button>
+            </div>
+        </div>
+        
+        <!-- Contact Section (Always visible) -->
         <div class="email-section">
             <h2>Get In Touch</h2>
             <p class="subtitle">For business inquiries, collaborations, or online tutoring slots.</p>
@@ -140,5 +218,21 @@
             <a href="#" target="_blank">LinkedIn</a>
         </div>
     </div>
+    
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
